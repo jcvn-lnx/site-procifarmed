@@ -1,6 +1,7 @@
 import React from "react";
 import { products } from "../../data/products";
 import { Button } from "../ui/Button";
+import { ImageOff } from "lucide-react";
 
 export function Products() {
   return (
@@ -26,18 +27,25 @@ export function Products() {
               key={product.id}
               className="group bg-white rounded-xl border border-slate-200 overflow-hidden hover:shadow-lg transition-all duration-300 flex flex-col"
             >
-              <div className="relative h-48 overflow-hidden bg-slate-100">
-                <img
-                  src={product.image}
-                  alt={product.name}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                />
-                <div className="absolute top-3 left-3 bg-white/90 backdrop-blur px-2 py-1 rounded text-xs font-semibold text-slate-700 uppercase tracking-wider">
+              <div className="relative h-64 overflow-hidden bg-white border-b border-slate-100 flex items-center justify-center p-6">
+                {product.image ? (
+                  <img
+                    src={product.image}
+                    alt={product.name}
+                    className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500"
+                  />
+                ) : (
+                  <div className="flex flex-col items-center justify-center text-slate-300 bg-slate-50 w-full h-full rounded-lg">
+                    <ImageOff className="w-12 h-12 mb-2 opacity-50" />
+                    <span className="text-xs font-medium uppercase tracking-wide text-slate-400">Imagem Indisponível</span>
+                  </div>
+                )}
+                <div className="absolute top-3 left-3 bg-slate-900/5 backdrop-blur px-2 py-1 rounded text-xs font-semibold text-slate-700 uppercase tracking-wider border border-slate-200/50">
                   {product.category}
                 </div>
               </div>
               
-              <div className="p-5 flex flex-col flex-grow">
+              <div className="p-5 flex flex-col flex-grow bg-slate-50/30">
                 <h3 className="text-lg font-bold text-slate-900 mb-2 line-clamp-2 min-h-[3.5rem]">
                   {product.name}
                 </h3>
